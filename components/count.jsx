@@ -1,10 +1,7 @@
 "use client";
-
 import { Plus, Minus } from "lucide-react";
-import { useState } from "react";
 
-const Count = () => {
-  const [count, setCount] = useState(0);
+const Count = ({ count, setCount }) => {
   return (
     <div className="">
       <div className="h-screen flex items-center justify-between mx-6">

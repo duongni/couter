@@ -1,13 +1,7 @@
 "use client";
 import { Info, RotateCw, Settings } from "lucide-react";
-import { useState } from "react";
 
-const Navbar = () => {
-  const [count, setCount] = useState(0);
-  const resetNumber = () => {
-    setCount(0);
-  };
-
+const Navbar = ({ resetCount }) => {
   return (
     <div className="flex items-center justify-center gap-6 mt-10 transition ">
       <Info
@@ -19,7 +13,7 @@ const Navbar = () => {
         color="#111827"
         className="hover:cursor-pointer hover:scale-105"
         size={25}
-        onClick={resetNumber}
+        onClick={resetCount}
       />
       <Settings
         color="#111827"
