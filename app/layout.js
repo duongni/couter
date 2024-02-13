@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/theme-provider";
 import { Lato } from "next/font/google";
 import "@/styles/global.css";
 
@@ -16,10 +17,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={lato.className}>
-        <div className="main">
-          <main className="app">{children}</main>
-          <div className="gradient"></div>
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="main">
+            <main className="app">{children}</main>
+            <div className="gradient"></div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
