@@ -1,7 +1,8 @@
 "use client";
+
 import { Info, RotateCw, Settings } from "lucide-react";
 
-const Navbar = ({ resetCount }) => {
+const Navbar = ({ setCount }) => {
   return (
     <div className="flex items-center justify-center gap-6 mt-10 transition ">
       <Info
@@ -14,7 +15,7 @@ const Navbar = ({ resetCount }) => {
         className="hover:cursor-pointer hover:scale-105"
         size={25}
         onClick={() => {
-          resetCount();
+          setCount(0);
         }}
       />
       <Settings

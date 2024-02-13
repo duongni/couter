@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Count from "./Count";
 import Navbar from "./Navbar";
-import Count from "./count";
 
 const CounterPage = () => {
   const [count, setCount] = useState(0);
@@ -13,8 +13,7 @@ const CounterPage = () => {
 
   return (
     <div>
-      <Navbar resetCount={resetCount} />
-      <Count count={count} setCount={setCount} />
+      <Navbar resetCount={resetCount} /> {/* Pass resetCount as a prop */}
     </div>
   );
 };
