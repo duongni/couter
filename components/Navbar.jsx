@@ -13,7 +13,9 @@ const Navbar = ({ resetCount }) => {
         color="#111827"
         className="hover:cursor-pointer hover:scale-105"
         size={25}
-        onClick={resetCount}
+        onClick={() => {
+          resetCount();
+        }}
       />
       <Settings
         color="#111827"
