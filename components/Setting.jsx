@@ -5,7 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { Settings } from "lucide-react";
 
-const Setting = () => {
+const Setting = (setCount) => {
   const [enabled, setEnabled] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -46,7 +46,7 @@ const Setting = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-300 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-[#BFBFBF] p-6 text-left align-middle shadow-xl transition-all">
                   <div className="text-center">
                     <div className="text-[36px] font-bold my-8">Settings</div>
                     <div className="flex flex-col gap-3 items-center justify-center">

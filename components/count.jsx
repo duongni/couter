@@ -21,7 +21,7 @@ const Count = () => {
               setCount(0);
             }}
           />
-          <Setting />
+          <Setting setCount={setCount} />
           <ModeToggle />
         </div>
       </div>
