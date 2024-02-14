@@ -5,12 +5,12 @@ import "@/styles/global.css";
 const lato = Lato({
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
-  icons: { icon: "./counter.svg" },
 });
 
 export const metadata = {
   title: "simple counter app",
   description: "a minimal counter app to keep track of number for you",
+  icons: { icon: "./counter.svg" },
 };
 
 export default function RootLayout({ children }) {

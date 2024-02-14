@@ -1,8 +1,8 @@
 "use client";
-import { Plus, Minus, Info, RotateCw, Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Plus, Minus, Info, RotateCw } from "lucide-react";
 import { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
+import Setting from "./Setting";
 
 const Count = () => {
   const [count, setCount] = useState(0);
@@ -21,10 +21,7 @@ const Count = () => {
               setCount(0);
             }}
           />
-          <Settings
-            size={20}
-            className="hover:cursor-pointer hover:scale-125 ease-in-out duration-300"
-          />
+          <Setting />
           <ModeToggle />
         </div>
       </div>
