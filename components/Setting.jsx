@@ -2,12 +2,32 @@
 
 import { XCircle } from "lucide-react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Settings } from "lucide-react";
 
-const Setting = (setCount) => {
+const Setting = () => {
   const [enabled, setEnabled] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
+  const [initialCount, setIntialCount] = useState(0);
+  const [maxNumber, setMaxNumber] = useState(100);
+
+  useEffect(() => {
+    //Retrieves the value stored in the browser's local storage
+    //under the key "initialCount" and converts it to an integer using parseInt.
+    const storeInitialCount = parseInt(localStorage.getItem("initialCount"));
+    //Retrieves the value stored in the local storage under the key
+    //"maxNumber" and converts it to an integer using parseInt.
+    const storeMaxNumber = parseInt(localStorage.getItem("maxNumber"));
+
+    if (!isNaN(storeInitialCount)) {
+      setIntialCount(storeInitialCount);
+    }
+
+    if (!isNaN(storeMaxNumber)) {
+      setMaxNumber(storeMaxNumber);
+    }
+    //The empty dependency array ([]) indicates that this effect should only run once, after the initial render.
+  }, []);
 
   function closeSetting() {
     setIsOpen(false);
@@ -55,8 +75,12 @@ const Setting = (setCount) => {
                           Set count ={" "}
                         </label>
                         <input
-                          type="text"
-                          name=""
+                          type="number"
+                          id="initialCount"
+                          value={initialCount}
+                          onChange={(e) =>
+                            setIntialCount(parseInt(e.target.value))
+                          }
                           className="w-[100px] rounded text-[20px] text-center py-2 bg-gray-200 focus:outline-none"
                         ></input>
                       </form>
@@ -86,8 +110,12 @@ const Setting = (setCount) => {
                             Maximum ={" "}
                           </label>
                           <input
-                            type="text"
-                            name=""
+                            type="number"
+                            id="number"
+                            value={maxNumber}
+                            onChange={(e) =>
+                              setMaxNumber(parseInt(e.target.value))
+                            }
                             className="bg-gray-200 w-[100px] rounded text-[20px] text-center py-1 focus:outline-none"
                           ></input>
                         </div>
@@ -95,6 +123,7 @@ const Setting = (setCount) => {
                     </div>
                     <XCircle
                       className="mx-auto mt-[50px] mb-[20px]"
+                      type="submit"
                       onClick={closeSetting}
                     />
                   </div>
