@@ -4,8 +4,8 @@ import { useState } from "react";
 import { ModeToggle } from "./ModeToggle";
 import Setting from "./Setting";
 
-const Count = () => {
-  const [count, setCount] = useState(0);
+const Count = ({ initialCount }) => {
+  const [count, setCount] = useState(initialCount);
   return (
     <div className="h-screen max-w-[1300px] mx-auto flex flex-1 flex-col justify-start gap-20">
       <div className="flex flex-row items-center justify-around gap-6 mt-10 xs:mt-20 transition h-[100px] sm:h-[200px]">
@@ -21,7 +21,7 @@ const Count = () => {
               setCount(0);
             }}
           />
-          <Setting setCount={setCount} />
+          <Setting onInitialCountChange={setCount} />
           <ModeToggle />
         </div>
       </div>

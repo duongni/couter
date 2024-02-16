@@ -5,7 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { Settings } from "lucide-react";
 
-const Setting = () => {
+const Setting = ({ onInitialCountChange }) => {
   const [enabled, setEnabled] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [initialCount, setIntialCount] = useState(0);
@@ -34,6 +34,7 @@ const Setting = () => {
 
     localStorage.setItem("initialCount", initialCount);
     localStorage.setItem("maxNumber", maxNumber);
+    onInitialCountChange(initialCount);
   };
 
   function closeSetting() {
