@@ -29,6 +29,13 @@ const Setting = () => {
     //The empty dependency array ([]) indicates that this effect should only run once, after the initial render.
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    localStorage.setItem("initialCount", initialCount);
+    localStorage.setItem("maxNumber", maxNumber);
+  };
+
   function closeSetting() {
     setIsOpen(false);
   }
@@ -67,7 +74,7 @@ const Setting = () => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-[#BFBFBF] p-6 text-left align-middle shadow-xl transition-all">
-                  <div className="text-center">
+                  <form className="text-center" onSubmit={handleSubmit}>
                     <div className="text-[36px] font-bold my-8">Settings</div>
                     <div className="flex flex-col gap-3 items-center justify-center">
                       <form className=" flex border-2 bg-white/80w-[350px] px-3 py-4 rounded-lg mx-auto items-center justify-center gap-1">
@@ -126,7 +133,7 @@ const Setting = () => {
                       type="submit"
                       onClick={closeSetting}
                     />
-                  </div>
+                  </form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
