@@ -5,36 +5,32 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { Settings } from "lucide-react";
 
-const Setting = ({ onInitialCountChange }) => {
+const Setting = ({ setInitialCount }) => {
   const [enabled, setEnabled] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
-  const [initialCount, setIntialCount] = useState(0);
+  const [initialCountLocal, setInitialCountLocal] = useState(0);
   const [maxNumber, setMaxNumber] = useState(100);
 
   useEffect(() => {
-    //Retrieves the value stored in the browser's local storage
-    //under the key "initialCount" and converts it to an integer using parseInt.
-    const storeInitialCount = parseInt(localStorage.getItem("initialCount"));
-    //Retrieves the value stored in the local storage under the key
-    //"maxNumber" and converts it to an integer using parseInt.
-    const storeMaxNumber = parseInt(localStorage.getItem("maxNumber"));
+    const storedInitialCount = parseInt(localStorage.getItem("initialCount"));
+    const storedMaxNumber = parseInt(localStorage.getItem("maxNumber"));
 
-    if (!isNaN(storeInitialCount)) {
-      setIntialCount(storeInitialCount);
+    if (!isNaN(storedInitialCount)) {
+      setInitialCountLocal(storedInitialCount);
+      setInitialCount(storedInitialCount); // Set the initial count in the parent component
     }
 
-    if (!isNaN(storeMaxNumber)) {
-      setMaxNumber(storeMaxNumber);
+    if (!isNaN(storedMaxNumber)) {
+      setMaxNumber(storedMaxNumber);
     }
-    //The empty dependency array ([]) indicates that this effect should only run once, after the initial render.
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("initialCount", initialCount);
+    localStorage.setItem("initialCount", initialCountLocal);
     localStorage.setItem("maxNumber", maxNumber);
-    onInitialCountChange(initialCount);
+    setInitialCount(initialCountLocal); // Set the initial count in the parent component
   };
 
   function closeSetting() {
@@ -85,9 +81,9 @@ const Setting = ({ onInitialCountChange }) => {
                         <input
                           type="number"
                           id="initialCount"
-                          value={initialCount}
+                          value={initialCountLocal}
                           onChange={(e) =>
-                            setIntialCount(parseInt(e.target.value))
+                            setInitialCountLocal(parseInt(e.target.value))
                           }
                           className="w-[100px] rounded text-[20px] text-center py-2 bg-gray-200 focus:outline-none"
                         ></input>
